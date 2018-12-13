@@ -1,0 +1,47 @@
+integreatly:
+  credentials:
+  - name: github
+    kind: github
+    spec:
+      token: 12345
+  - name: dockerhub
+      kind: container_registry
+      spec:
+        url: registry.docker.io
+        username: docker
+        password: docker
+  - name: quay
+        kind: container_registry
+        spec:
+          url: registry.quay.io
+          username: quay
+          password: quay
+  channels:
+    - name: trello sender
+      kind: trello
+      spec:
+        credentials: trello
+        template: /path/to/template
+        board: trello-board-id-or-name
+        vars: ["title", "tags"]
+    - name: trello sender
+      kind: trello
+      spec:
+        token: my-api-token
+        template: /path/to/template
+        board: trello-board-id-or-name
+        vars: ["title", "tags"]
+  releases:
+    - name: fuse
+      kind: github
+      version: 1.0.0
+      spec:
+        org: something
+        repository: something else
+    - name: sso
+      kind: registry
+      version: 1.0.0
+      spec:
+        reg: docker.io
+        org: redhat
+        repository: keycloak

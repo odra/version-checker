@@ -1,0 +1,42 @@
+{
+  "integreatly": {
+    "channels": [
+      {
+        "name": "trello sender",
+        "kind": "trello",
+        "spec": {
+          "token": "my-api-token",
+          "template": "/path/to/template",
+          "board": "trello-board-id-or-name",
+          "vars": [
+            "title",
+            "tags"
+          ]
+        }
+      }
+    ],
+    "releases": [
+      {
+        "name": "fuse",
+        "kind": "github",
+        "version": "1.0.0",
+        "spec": {
+          "org": "something",
+          "repository": "something else",
+          "strategy": "release"
+        }
+      },
+      {
+        "name": "sso",
+        "kind": "registry",
+        "version": "1.0.0",
+        "spec": {
+          "reg": "docker.io",
+          "org": "redhat",
+          "repository": "keycloak",
+          "strategy": "tag"
+        }
+      }
+    ]
+  }
+}
