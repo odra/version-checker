@@ -10,8 +10,6 @@ func cleanAll() {
 	os.Unsetenv("GITHUB_APP_TOKEN")
 	os.Unsetenv("DOCKER_USERNAME")
 	os.Unsetenv("DOCKER_PASSWORD")
-	os.Unsetenv("TRELLO_APP_KEY")
-	os.Unsetenv("TRELLO_APP_TOKEN")
 	Reset()
 }
 
@@ -27,8 +25,6 @@ func TestBootstrap(t *testing.T) {
 				os.Setenv("GITHUB_APP_TOKEN", "github")
 				os.Setenv("DOCKER_USERNAME", "docker")
 				os.Setenv("DOCKER_PASSWORD", "docker")
-				os.Setenv("TRELLO_APP_KEY", "trello")
-				os.Setenv("TRELLO_APP_TOKEN", "trello")
 				Bootstrap()
 			},
 			Validate: func(t *testing.T, c *meta.Credentials) {
@@ -38,14 +34,6 @@ func TestBootstrap(t *testing.T) {
 
 				if c.Docker == nil || c.Docker.Username != "docker" || c.Docker.Password != "docker" {
 					t.Fatalf("Failed to retrieve docker credentials")
-				}
-
-				if c.Trello == nil {
-					t.Fatalf("Trello credentials not set")
-				}
-
-				if c.Trello.AppKey != "trello" || c.Trello.Token != "trello" {
-					t.Fatalf("Failed to retrive trello credentials")
 				}
 			},
 		},
@@ -62,14 +50,6 @@ func TestBootstrap(t *testing.T) {
 
 				if c.Docker == nil || c.Docker.Username != "" || c.Docker.Password != "" {
 					t.Fatalf("Docker credentials should not be set")
-				}
-
-				if c.Trello == nil {
-					t.Fatalf("Trello credentials not set")
-				}
-
-				if c.Trello.AppKey != "" || c.Trello.Token != "" {
-					t.Fatalf("Trello credentials should be empty")
 				}
 			},
 		},
@@ -107,8 +87,6 @@ func TestGet(t *testing.T) {
 				os.Setenv("GITHUB_APP_TOKEN", "github")
 				os.Setenv("DOCKER_USERNAME", "docker")
 				os.Setenv("DOCKER_PASSWORD", "docker")
-				os.Setenv("TRELLO_APP_KEY", "trello")
-				os.Setenv("TRELLO_APP_TOKEN", "trello")
 				Bootstrap()
 			},
 			Validate: func(t *testing.T, c *meta.Credentials) {
@@ -160,8 +138,6 @@ func TestUpdate(t *testing.T) {
 				os.Setenv("GITHUB_APP_TOKEN", "github")
 				os.Setenv("DOCKER_USERNAME", "docker")
 				os.Setenv("DOCKER_PASSWORD", "docker")
-				os.Setenv("TRELLO_APP_KEY", "trello")
-				os.Setenv("TRELLO_APP_TOKEN", "trello")
 				Bootstrap()
 			},
 			Cred: func() *meta.Credentials {
@@ -207,8 +183,6 @@ func TestReset(t *testing.T) {
 				os.Setenv("GITHUB_APP_TOKEN", "github")
 				os.Setenv("DOCKER_USERNAME", "docker")
 				os.Setenv("DOCKER_PASSWORD", "docker")
-				os.Setenv("TRELLO_APP_KEY", "trello")
-				os.Setenv("TRELLO_APP_TOKEN", "trello")
 				Bootstrap()
 			},
 			Validate: func(t *testing.T, c *meta.Credentials) {

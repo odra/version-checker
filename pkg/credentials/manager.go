@@ -17,10 +17,6 @@ func Bootstrap() {
 			Username: getEnv("DOCKER_USERNAME"),
 			Password: getEnv("DOCKER_PASSWORD"),
 		},
-		Trello: &meta.TrelloCredential{
-			AppKey: getEnv("TRELLO_APP_KEY"),
-			Token:  getEnv("TRELLO_APP_TOKEN"),
-		},
 	}
 }
 
@@ -40,11 +36,6 @@ func Update(c meta.Credentials) error {
 	if c.Docker != nil {
 		credentials.Docker.Username = c.Docker.Username
 		credentials.Docker.Password = c.Docker.Password
-	}
-
-	if c.Trello != nil {
-		credentials.Trello.AppKey = c.Trello.AppKey
-		credentials.Trello.AppKey = c.Trello.Token
 	}
 
 	return nil
